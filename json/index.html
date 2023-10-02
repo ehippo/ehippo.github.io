@@ -1,0 +1,42 @@
+<html>
+    <head><title>Dev Tools</title></head>
+    <body>
+        <!-- line number -->
+        <button onclick="tree()">tree</button>
+        <button onclick="pojo()">pojo</button>
+        <button onclick="beautify()">format</button>
+        <button onclick="clean()">remove spaces</button>
+        <button onclick="escape()">escape</button>
+        <button onclick="unescape()">unescape</button>
+        <br/>
+        <textarea id='inputJson' cols = "100" rows="20">{ "test": "value"}</textarea >
+        <!-- <br/>
+        <input type="text" id='o1'>hello</input> -->
+    </body>
+    <script>
+        function beautify() {
+            let value = document.getElementById("inputJson").value;
+            let formattedValue = JSON.stringify(JSON.parse(value), null, 2) ;  
+            document.getElementById("inputJson").value = formattedValue;
+            console.log(formattedValue);
+        }
+        function clean() {
+            let value = document.getElementById("inputJson").value;
+            let formattedValue =  value.replace(/\s/g, '');
+            document.getElementById("inputJson").value = formattedValue;
+            console.log(formattedValue); 
+        }
+        function escape() {
+            let value = document.getElementById("inputJson").value;
+            let formattedValue = JSON.stringify(value, null, 2).slice(1, -1);
+            document.getElementById("inputJson").value = formattedValue;
+            console.log(formattedValue);
+        }
+        function unescape() {
+            let value = document.getElementById("inputJson").value;
+            let formattedValue = JSON.stringify(JSON.parse(JSON.parse('"' + value + '"'))) ;  
+            document.getElementById("inputJson").value = formattedValue;
+            console.log(formattedValue);
+        }
+    </script>
+</html>
